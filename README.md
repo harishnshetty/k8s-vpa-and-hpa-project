@@ -128,7 +128,7 @@ kubectl get nodes
 ```
 ```bash
 watch kubectl top node
-
+```
 
 ## For VPA Documentation 
 Refer: [Kodekloud](https://kodekloud.com/blog/vertical-pod-autoscaler/)
@@ -149,8 +149,8 @@ kubectl get pods -n kube-system | grep vpa
 
 ## Now Go to the VPA Path and apply the mainfest files.
 | kubectl top pod           |  kubectl describe pod vpa-deployment |
-| watch kubectl get vpa     |  
-| watch kubectl get pods   |  watch kubectl get nodes 
+| watch kubectl get vpa     |  |
+| watch kubectl get pods   |  watch kubectl get nodes |
 
 
 ## Now Go to the HPA Path and apply the mainfest files.
@@ -159,8 +159,8 @@ kubectl get pods -n kube-system | grep vpa
 
 
 | kubectl top pod           |   |
-| watch kubectl get hpa     |  Load Generator
-| watch kubectl get pods   |  watch kubectl get nodes 
+| watch kubectl get hpa     |  Load Generator |
+| watch kubectl get pods   |  watch kubectl get nodes |
 
 ```bash
 kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://hpa-svc; done"

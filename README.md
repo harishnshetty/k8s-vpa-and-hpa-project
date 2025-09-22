@@ -147,20 +147,27 @@ kubectl get pods -n kube-system | grep vpa
 ./hack/vpa-up.sh
 ```
 
-## Now Go to the VPA Path and apply the mainfest files.
-| kubectl top pod           |  kubectl describe pod vpa-deployment |
-| watch kubectl get vpa     |  |
-| watch kubectl get pods   |  watch kubectl get nodes |
+## Now Go to the VPA Path and apply the manifest files.
+
+| Command                     | Description                             |
+|-----------------------------|-----------------------------------------|
+| kubectl top pod             | Show resource usage of pods             |
+| kubectl describe pod vpa-deployment | Describe the VPA deployment pod     |
+| watch kubectl get vpa       | Continuously monitor VPA resources      |
+| watch kubectl get pods      | Continuously monitor pod status         |
+| watch kubectl get nodes     | Continuously monitor node status        |
 
 
-## Now Go to the HPA Path and apply the mainfest files.
-
-- This Command Generates the load to the pods
+## Now Go to the HPA Path and apply the manifest files.
 
 
-| kubectl top pod           |   |
-| watch kubectl get hpa     |  Load Generator |
-| watch kubectl get pods   |  watch kubectl get nodes |
+| Command                     | Description                             |
+|-----------------------------|-----------------------------------------|
+| kubectl top pod             | Show resource usage of pods             |
+| watch kubectl get hpa       | Continuously monitor HPA resources      |
+| watch kubectl get pods      | Continuously monitor pod status         |
+| watch kubectl get nodes     | Continuously monitor node status        |
+
 
 ```bash
 kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://hpa-svc; done"
@@ -177,6 +184,8 @@ kubectl autoscale deployment hpa-deployment --cpu-percent=50 --min=1 --max=10
 kubectl get hpa hpa-deployment --watch
 ```
 
+
+# Delete the Cluster 
 ```bash
 eksctl delete cluster --name my-cluster --region ap-south-1
 ```

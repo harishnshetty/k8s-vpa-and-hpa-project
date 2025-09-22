@@ -3,9 +3,9 @@
 ## For more projects, check out  
 [https://harishnshetty.github.io/projects.html](https://harishnshetty.github.io/projects.html)
 
-[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/bc33ac178349ab935bf3ac7d56174a182b740317/vpa%20hpa.jpg)](https://youtu.be/M6BxKpSvWa4)
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/812115f2377a020bedc1419cd927a9edd4a11ee1/vpa%20hpa.jpg)](https://youtu.be/M6BxKpSvWa4)
 
-[![Channel Link](https://github.com/harishnshetty/image-data-project/blob/9abf8f00d35d9f50dc95893102fcf3f374319383/3tieraws-project-statelock-terraform-packer%20-structure.jpg)](https://youtu.be/M6BxKpSvWa4)
+[![Channel Link](https://github.com/harishnshetty/k8s-vpa-and-hpa-project/blob/ca4f51df728d59cb6d920b60fcb8f17221310215/VPA/img.png)](https://youtu.be/M6BxKpSvWa4)
 
 # Required Packages installations
 
@@ -113,6 +113,12 @@ eksctl create cluster \
   --node-volume-size 20
 ```
 ---
+
+
+## For VPA Documentation 
+Refer: [Kodekloud](https://kodekloud.com/blog/vertical-pod-autoscaler/)
+
+
 
 git clone https://github.com/kubernetes/autoscaler.git
 cd autoscaler/vertical-pod-autoscaler/

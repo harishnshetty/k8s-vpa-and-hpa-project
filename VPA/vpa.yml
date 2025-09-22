@@ -1,0 +1,23 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: vpa-demo
+  # Consider adding a namespace if needed
+  # namespace: your-namespace
+spec:
+  targetRef: 
+    apiVersion: "apps/v1" 
+    kind: Deployment   # Or StatefulSet, DaemonSet, ReplicaSet, ReplicationController
+    name: vpa-deployment #This MUST match the name of your Deployment/StatefulSet etc.
+  updatePolicy: 
+    updateMode: "Auto"
+  resourcePolicy: 
+    containerPolicies:
+    - containerName: vpa-container #This MUST match a container name inside your Pod spec
+      minAllowed: 
+        cpu: 200m
+        memory: 256Mi
+      maxAllowed: 
+        cpu: 1 # Using '1' for 1000m (1 CPU core) is also common and valid
+        memory: 1Gi 
+      controlledResources: ["cpu", "memory"]

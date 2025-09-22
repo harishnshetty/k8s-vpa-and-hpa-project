@@ -5,7 +5,7 @@
 
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/812115f2377a020bedc1419cd927a9edd4a11ee1/vpa%20hpa.jpg)](https://youtu.be/M6BxKpSvWa4)
 
-[![Channel Link](https://github.com/harishnshetty/k8s-vpa-and-hpa-project/blob/ca4f51df728d59cb6d920b60fcb8f17221310215/VPA/img.png)](https://youtu.be/M6BxKpSvWa4)
+[![Channel Link](https://github.com/harishnshetty/k8s-vpa-and-hpa-project/blob/2dbb594ead2451e5f17cb854180f3b55b760349b/VPA/img.jpg)](https://youtu.be/M6BxKpSvWa4)
 
 # Required Packages installations
 
@@ -96,9 +96,11 @@ source ~/.bashrc
 ---
 
 ## 4. Create EKS Cluster and Nodegroup 
-4 CPU and 8 GB RAM
-c6a.xlarge at $0.0935/hr  ( 2 Nodes X 6 Hours = 1.22$ ) [ 93.126INR ]
-0.0935×2=0.187USD/hr    [ 0.187×83=15.521INR/hr]
+- 4 CPU and 8 GB RAM c6a.xlarge at $0.0935/hr  
+- ( 2 Nodes X 6 Hours = 1.22$ ) [ 93.126INR ]
+- 0.0935 × 2 nodes =0.187USD/hr    [ 0.187×83=15.521INR/hr]
+
+- t3.medium
 
 ```bash
 eksctl create cluster \
@@ -106,7 +108,7 @@ eksctl create cluster \
   --region ap-south-1 \
   --version 1.33 \
   --nodegroup-name standard-workers \
-  --node-type t3.medium \
+  --node-type c6a.xlarge \
   --nodes 2 \
   --nodes-min 2 \
   --nodes-max 4 \
@@ -114,18 +116,6 @@ eksctl create cluster \
 ```
 ---
 
-
-## For VPA Documentation 
-Refer: [Kodekloud](https://kodekloud.com/blog/vertical-pod-autoscaler/)
-
-
-
-git clone https://github.com/kubernetes/autoscaler.git
-cd autoscaler/vertical-pod-autoscaler/
-
-./hack/vpa-up.sh
-
-kubectl get pods -n kube-system | grep vpa
 ## 5. Update kubeconfig
 
 ```bash
@@ -138,37 +128,54 @@ kubectl get nodes
 ```
 ```bash
 watch kubectl top node
-```
-kubectl describe pod vpa-deployment-78d49b8c89-pg5bk
+
+
+## For VPA Documentation 
+Refer: [Kodekloud](https://kodekloud.com/blog/vertical-pod-autoscaler/)
+
 
 ```bash
-kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://vpa-svc; done"
+git clone https://github.com/kubernetes/autoscaler.git
+cd autoscaler/vertical-pod-autoscaler/
 ```
 
 ```bash
-kubectl describe vpa vpa-vpas
+kubectl get pods -n kube-system | grep vpa
 ```
 
 ```bash
-kubectl autoscale deployment hpa-deployment --cpu-percent=50 --min=1 --max=10
+./hack/vpa-up.sh
 ```
 
+## Now Go to the VPA Path and apply the mainfest files.
+| kubectl top pod           |  kubectl describe pod vpa-deployment |
+| watch kubectl get vpa     |  
+| watch kubectl get pods   |  watch kubectl get nodes 
 
+
+## Now Go to the HPA Path and apply the mainfest files.
+
+- This Command Generates the load to the pods
+
+
+| kubectl top pod           |   |
+| watch kubectl get hpa     |  Load Generator
+| watch kubectl get pods   |  watch kubectl get nodes 
 
 ```bash
 kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://hpa-svc; done"
 ```
 
+
+## you can use normal command to Auto Scale hpa 
+
+```bash
+kubectl autoscale deployment hpa-deployment --cpu-percent=50 --min=1 --max=10
+```
+
 ```bash
 kubectl get hpa hpa-deployment --watch
 ```
-
-
-```bash
-kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://vpa-svc; done"
-```
-
-
 
 ```bash
 eksctl delete cluster --name my-cluster --region ap-south-1

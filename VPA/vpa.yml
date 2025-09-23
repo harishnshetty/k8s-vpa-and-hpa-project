@@ -15,8 +15,8 @@ spec:
     containerPolicies:
     - containerName: vpa-container #This MUST match a container name inside your Pod spec
       minAllowed: 
-        cpu: 200m
-        memory: 256Mi
+        cpu: 400m
+        memory: 512Mi
       maxAllowed: 
         cpu: 1 # Using '1' for 1000m (1 CPU core) is also common and valid
         memory: 1Gi 

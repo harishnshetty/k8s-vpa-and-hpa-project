@@ -3,9 +3,9 @@
 ## For more projects, check out  
 [https://harishnshetty.github.io/projects.html](https://harishnshetty.github.io/projects.html)
 
-[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/812115f2377a020bedc1419cd927a9edd4a11ee1/vpa%20hpa.jpg)](https://youtu.be/M6BxKpSvWa4)
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/812115f2377a020bedc1419cd927a9edd4a11ee1/vpa%20hpa.jpg)](https://youtu.be/DFRVYjx2eM4)
 
-[![Channel Link](https://github.com/harishnshetty/k8s-vpa-and-hpa-project/blob/2dbb594ead2451e5f17cb854180f3b55b760349b/VPA/img.jpg)](https://youtu.be/M6BxKpSvWa4)
+[![Channel Link](https://github.com/harishnshetty/k8s-vpa-and-hpa-project/blob/2dbb594ead2451e5f17cb854180f3b55b760349b/VPA/img.jpg)](https://youtu.be/DFRVYjx2eM4)
 
 # Required Packages installations
 
